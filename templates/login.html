@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>モンスターバトルロイヤル</h1>
+    <p>{{ message1 }}</p>
+    <p>{{ message2 }}</p>
+    <p></p>
+    <p></p>
+    <form action="/input0" method="post">
+        <label for="name">ユーザー名</label>
+        <input type="text" name="name">
+        <button type="submit">入力</button>
+    </form>
+{% endblock %}

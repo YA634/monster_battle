@@ -1,0 +1,48 @@
+<!-- battle.html -->
+{% extends "layout.html" %}
+{% block content %}
+    <h3>{{ result1["btl_turn"] }}ターン</h3>
+    {% if result1["dod"] == True %}
+        <p>回避！</p>
+    {% elif result1["cri"] == 1 %}
+        <p>かいしんのいちげき！</p>
+    {% elif result1["mp_con"] == -1 %}
+        <p>MPがたりない！</p> 
+    {% else %}
+        <br>
+    {% endif %}
+    <p>{{ result1["result"] }}</p>
+    <p>{{ result1["jdm"]}}</p>
+    <p>{{ result1["jcm"]}}</p>
+    <p>{{ result1["bkm"]}}</p>
+    <p>{{ result1["rkm"]}}</p>
+    <p></p>
+    <p>{{ result1["message"]}}</p>
+    <p></p>
+    <form action="/battle" method="get">
+        <button type="submit">次のターン</button>
+    </form>
+    <table border="5">
+        <tr><th>名前</th><th>HP</th><th>MP</th><th>ATK</th><th>DEF</th><th>SPD</th><th>MAG</th><th>Lv</th><th>CON</th><th>Odds</th></tr>
+        {% for name in names %}
+            <tr>
+                <td>{{ name }}</td>
+                <td>{{ m_dc[name].HP }}/{{ primitive_dc[name].HP }}</td>
+                <td>{{ m_dc[name].MP }}/{{ primitive_dc[name].MP }}</td>
+                <td>{{ m_dc[name].ATK }}</td>
+                <td>{{ m_dc[name].DEF }}</td>
+                <td>{{ m_dc[name].SPD }}</td>
+                <td>{{ m_dc[name].MAG }}</td>
+                <td>{{ m_dc[name].Lv }}</td>
+                <td>{{ m_dc[name].CON }}</td>
+                <td>{{ odds_dc[name] }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <p></p>
+    <form action="/skip" method="get">
+        <button type="submit">スキップ</button>
+    </form>
+    <p></p>
+
+{% endblock %}

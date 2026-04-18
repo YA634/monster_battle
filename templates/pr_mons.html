@@ -1,0 +1,69 @@
+<!-- html -->
+{% extends "layout.html" %}
+{% block content %}
+    <!-- <p>{{ m_dc }}</p> -->
+    <h1>モンスターバトルロイヤル</h1>
+    <br>
+    <p>{{ message0 }} {{ message1 }}さん   所持金{{ message2 }}円</p>
+    <table border="5">
+        <tr><th>名前</th><th>HP</th><th>MP</th><th>ATK</th><th>DEF</th><th>SPD</th><th>MAG</th><th>Lv</th><th>CON</th><th>Odds</th></tr>
+        {% for name in names %}
+            <tr>
+                <td>{{ name }}</td>
+                <td>{{ m_dc[name].HP }}</td>
+                <td>{{ m_dc[name].MP }}</td>
+                <td>{{ m_dc[name].ATK }}</td>
+                <td>{{ m_dc[name].DEF }}</td>
+                <td>{{ m_dc[name].SPD }}</td>
+                <td>{{ m_dc[name].MAG }}</td>
+                <td>{{ m_dc[name].Lv }}</td>
+                <td>{{ m_dc[name].CON }}</td>
+                <td>{{ odds_dc[name] }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <p>優勝者履歴</p>
+    <table border="5">
+        <tr><th>id</th><th>名前</th><th>HP</th><th>MP</th><th>ATK</th><th>DEF</th><th>SPD</th><th>MAG</th><th>Lv</th><th>Odds</th></tr>
+        {% for winner_info in winner_infos %}
+            <tr>
+                <td>{{ winner_info.winner_id }}</td>
+                <td>{{ winner_info.name }}</td>
+                <td>{{ winner_info.hp }}</td>
+                <td>{{ winner_info.mp }}</td>
+                <td>{{ winner_info.atk }}</td>
+                <td>{{ winner_info.def }}</td>
+                <td>{{ winner_info.spd }}</td>
+                <td>{{ winner_info.mag }}</td>
+                <td>{{ winner_info.lv }}</td>
+                <td>{{ winner_info.odds }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <p>{{ message3 }}</p>
+    <form action="/input" method="POST">
+        <select name="mons_select">
+            {% for monster in names %}
+                <option value="{{ monster }}">{{ monster }}</option>
+            {% endfor %}
+        </select>
+        <label for="bet">賭け金</label>
+        <input type="text" name="bet">
+        <button type="submit">開始</button>
+        <p>{{ message4 }}</p>
+    </form>
+    <form action="/pt_battle_home" method="get">
+        <button type="submit">パーティー対戦モード</button>
+    </form>
+    <br>
+    <br>
+    <form action="/input_clear">
+        <button type="submit">データクリア</button>
+    </form>
+    <form action="/">
+        <button type="submit">ログアウト</button>
+    </form>
+{% endblock %}
+

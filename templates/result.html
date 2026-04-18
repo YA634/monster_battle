@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>Result</h1>
+    <p>{{ message1 }}</p>
+    <p>{{ message2 }}</p>
+    <p></p>
+    <p></p>
+    <form action="/create" method="get">
+        <button type="submit">戻る</button>
+    </form>
+{% endblock %}

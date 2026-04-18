@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block content %}
+    {% for i in range(result_len) %}
+        <p>{{ result1["result"][i] }}</p>
+    {% endfor %}
+    <br>
+    <p>{{ result1["jdm"]}}</p>
+    <p>{{ result1["jcm"]}}</p>
+    <p>{{ result1["bkm"]}}</p>
+    <p>{{ result1["rkm"]}}</p>
+    <p></p><br>
+    <h5>{{ result1["message"]}}</h5>
+    <br>
+    <h3>{{ vic_count }}連勝中！</h3>
+    <br>
+    <h1>Result</h1>
+    <p>{{ message1 }}</p>
+    <p></p>
+    <p></p>
+    <form action="/pt_battle_home" method="get">
+        <button type="submit">さらに進む</button>
+    </form>
+    <form action="/create" method="get">
+        <button type="submit">戻る</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,66 @@
+<!-- html -->
+{% extends "layout.html" %}
+{% block content %}
+    <!-- <p>{{ m_dc }}</p> -->
+    <h1>パーティーバトル</h1>
+    <h3>{{ vic_count }}連勝中</h3>
+    <br>
+    <p>{{ message0 }} {{ message1 }}さん   所持金{{ message2 }}円</p>
+    <p>モンスターの集団</p>
+    <table border="5">
+        <tr><th>名前</th><th>HP</th><th>MP</th><th>ATK</th><th>DEF</th><th>SPD</th><th>MAG</th><th>Lv</th><th>CON</th></tr>
+        {% for name in m_names %}
+            <tr>
+                <td>{{ name }}</td>
+                <td>{{ m_dc[name].HP }}</td>
+                <td>{{ m_dc[name].MP }}</td>
+                <td>{{ m_dc[name].ATK }}</td>
+                <td>{{ m_dc[name].DEF }}</td>
+                <td>{{ m_dc[name].SPD }}</td>
+                <td>{{ m_dc[name].MAG }}</td>
+                <td>{{ m_dc[name].Lv }}</td>
+                <td>{{ m_dc[name].CON }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <p>勇者パーティー</p>
+    <table border="5">
+        <tr><th>名前</th><th>HP</th><th>MP</th><th>ATK</th><th>DEF</th><th>SPD</th><th>MAG</th><th>Lv</th><th>CON</th></tr>
+        {% for yname in y_names %}
+            <tr>
+                <td>{{ yname }}</td>
+                <td>{{ y_dc[yname].HP }}</td>
+                <td>{{ y_dc[yname].MP }}</td>
+                <td>{{ y_dc[yname].ATK }}</td>
+                <td>{{ y_dc[yname].DEF }}</td>
+                <td>{{ y_dc[yname].SPD }}</td>
+                <td>{{ y_dc[yname].MAG }}</td>
+                <td>{{ y_dc[yname].Lv }}</td>
+                <td>{{ y_dc[yname].CON }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <br>
+    <p></p>
+    <form action="/input_ptbtl" method="POST">
+        <select name="cmdselect1">
+            {% for cmd in cmds1 %}
+                <option value="{{ cmd }}">{{ cmd }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">選択</button>
+    </form>
+    <form action="/" method="get">
+        <button type="submit">モンスターバトロワ</button>
+    </form>
+    <br>
+    <br>
+    <!-- <form action="/input_clear">
+        <button type="submit">データクリア</button>
+    </form> -->
+    <form action="/">
+        <button type="submit">ログアウト</button>
+    </form>
+{% endblock %}

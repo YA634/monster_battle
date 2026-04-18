@@ -1,0 +1,105 @@
+<!-- battle_p.html -->
+{% extends "layout.html" %}
+{% block content %}
+    <h3>{{ vic_count }}連勝中</h3>
+    <br>
+    <h3>プレイヤーアクション</h3>
+    <p></p>
+    <p>コマンドを選択</p>
+    <form action="/input_pt" method="post">
+        <p>勇者</p>
+        <select name="勇者cmd">
+            {% for cmd in cmds["勇者"] %}
+                <option value="{{ cmd }}">{{ cmd }}</option>
+            {% endfor %}
+        </select>
+        <select name="勇者ag">
+            {% for mons in alive_m %}
+                <option value="{{ mons }}">{{ mons }}</option>
+            {% endfor %}
+        </select>        
+        <p>賢者</p>
+        <select name="賢者cmd">
+            {% for cmd in cmds["賢者"] %}
+                <option value="{{ cmd }}">{{ cmd }}</option>
+            {% endfor %}
+        </select>
+        <select name="賢者ag">
+            {% for mons in alive_m %}
+                <option value="{{ mons }}">{{ mons }}</option>
+            {% endfor %}
+        </select>
+        <p>パラディン</p>
+        <select name="パラディンcmd">
+            {% for cmd in cmds["パラディン"] %}
+                <option value="{{ cmd }}">{{ cmd }}</option>
+            {% endfor %}
+        </select>
+        <select name="パラディンag">
+            {% for mons in alive_m %}
+                <option value="{{ mons }}">{{ mons }}</option>
+            {% endfor %}
+        </select>
+        <p>バトルマスター</p>
+        <select name="バトルマスターcmd">
+            {% for cmd in cmds["バトルマスター"] %}
+                <option value="{{ cmd }}">{{ cmd }}</option>
+            {% endfor %}
+        </select>
+        <select name="バトルマスターag">
+            {% for mons in alive_m %}
+                <option value="{{ mons }}">{{ mons }}</option>
+            {% endfor %}
+        </select>
+        <p>スーパースター</p>
+        <select name="スーパースターcmd">
+            {% for cmd in cmds["スーパースター"] %}
+                <option value="{{ cmd }}">{{ cmd }}</option>
+            {% endfor %}
+        </select>
+        <select name="スーパースターag">
+            {% for mons in alive_m %}
+                <option value="{{ mons }}">{{ mons }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">選択</button>
+    </form>
+    <p></p>
+    <p>モンスターの集団</p>
+    <table border="5">
+        <tr><th>名前</th><th>HP</th><th>MP</th><th>ATK</th><th>DEF</th><th>SPD</th><th>MAG</th><th>Lv</th><th>CON</th></tr>
+        {% for name in m_names %}
+            <tr>
+                <td>{{ name }}</td>
+                <td>{{ dc2[name].HP }}/{{ pri_m_dc[name].HP }}</td>
+                <td>{{ dc2[name].MP }}/{{ pri_m_dc[name].MP }}</td>
+                <td>{{ dc2[name].ATK }}</td>
+                <td>{{ dc2[name].DEF }}</td>
+                <td>{{ dc2[name].SPD }}</td>
+                <td>{{ dc2[name].MAG }}</td>
+                <td>{{ dc2[name].Lv }}</td>
+                <td>{{ dc2[name].CON }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <p>勇者パーティー</p>
+    <table border="5">
+        <tr><th>名前</th><th>HP</th><th>MP</th><th>ATK</th><th>DEF</th><th>SPD</th><th>MAG</th><th>Lv</th><th>CON</th></tr>
+        {% for yname in y_names %}
+            <tr>
+                <td>{{ yname }}</td>
+                <td>{{ dc2[yname].HP }}/{{ pri_y_dc[yname].HP }}</td>
+                <td>{{ dc2[yname].MP }}/{{ pri_y_dc[yname].MP }}</td>
+                <td>{{ dc2[yname].ATK }}</td>
+                <td>{{ dc2[yname].DEF }}</td>
+                <td>{{ dc2[yname].SPD }}</td>
+                <td>{{ dc2[yname].MAG }}</td>
+                <td>{{ dc2[yname].Lv }}</td>
+                <td>{{ dc2[yname].CON }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <p></p>
+    <p></p>
+
+{% endblock %}
