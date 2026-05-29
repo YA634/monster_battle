@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: monster-battle
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn pr_mons_name:app
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
