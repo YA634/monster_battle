@@ -25,13 +25,7 @@ app.secret_key = 'your-secret-key-here'
 #         cursorclass=pymysql.cursors.DictCursor
 #     )
 def getConnection():
-    return psycopg2.connect(
-        host=os.environ.get('DB_HOST'),
-        dbname=os.environ.get('DB_NAME'),
-        user=os.environ.get('DB_USER'),
-        password=os.environ.get('DB_PASSWORD'),
-        cursor_factory=psycopg2.extras.RealDictCursor
-    )
+    return psycopg2.connect(os.environ.get('postgresql://monster_battle_db_ylso_user:gB9Fs42VIS4wHVU0uQPfegQtPw8DdDFY@dpg-d8cgedek1jcs738t7vg0-a/monster_battle_db_ylso'))
 
 
 @app.route("/")
