@@ -6,20 +6,31 @@ import cre_y_pt
 import battle
 import pt_battle
 import random
-import pymysql
-import pymysql.cursors
+# import pymysql
+# import pymysql.cursors
+import psycopg2
+import psycopg2.extras
+import os
 
 app = Flask(__name__)
 app.secret_key = 'your-secret-key-here'
 # mli = [];# bet_m = [];# odds_dc = {}
+# def getConnection():
+#     return pymysql.connect(
+#         host='localhost',
+#         db='battle_royal',
+#         user='root',
+#         password='rootuser',
+#         charset='utf8',
+#         cursorclass=pymysql.cursors.DictCursor
+#     )
 def getConnection():
-    return pymysql.connect(
-        host='localhost',
-        db='battle_royal',
-        user='root',
-        password='rootuser',
-        charset='utf8',
-        cursorclass=pymysql.cursors.DictCursor
+    return psycopg2.connect(
+        host=os.environ.get('DB_HOST'),
+        dbname=os.environ.get('DB_NAME'),
+        user=os.environ.get('DB_USER'),
+        password=os.environ.get('DB_PASSWORD'),
+        cursor_factory=psycopg2.extras.RealDictCursor
     )
 
 
@@ -108,7 +119,7 @@ def create_m():
     cursor = connection.cursor()
     cursor.execute(sql)
     w_id_count = cursor.fetchall()
-    w_l_id = w_id_count[0]['COUNT(winner_id)']
+    w_l_id = w_id_count[0]['count']
     sql = "SELECT winner_id,name,hp,mp,atk,def,spd,mag,lv,odds FROM winners WHERE winner_id BETWEEN %s AND %s"
     cursor = connection.cursor()
     if w_l_id >= 5:
